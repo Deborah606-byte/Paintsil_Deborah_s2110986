@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="midnight_blue">#191970</color>
+    <color name="coral">#FF6F61</color>
+    <color name="teal">#008080</color>
+    <color name="platinum">#E5E4E2</color>
+    <color name="background_menu">#1BFB9850</color>
+    <color name="dark_blue">#003366</color>
+    <color name="blue_purple">#11224D</color>
+    <color name="orange">#f98125</color>
+    <color name="icon">#fb9850</color>
+</resources>

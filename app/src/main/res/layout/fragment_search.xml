@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/platinum">
+
+    <!-- Wrap your existing layout in a ScrollView -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <EditText
+                android:id="@+id/searchCityEditText"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Search for a GCU campus"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:drawableStart="@drawable/search_icon_coral"
+                android:drawablePadding="8dp"
+                android:textSize="11sp"
+                android:textColorHint="@color/coral"
+                android:background="@drawable/search_edit_text_background"
+                android:inputType="text" />
+
+
+            <!-- RecyclerView to display city weather information -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewCities"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:background="@color/platinum" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
+

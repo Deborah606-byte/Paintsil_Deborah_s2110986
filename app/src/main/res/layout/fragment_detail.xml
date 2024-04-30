@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/platinum">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="?attr/actionBarSize">
+
+        <LinearLayout
+            android:id="@+id/weatherLayoutInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="16dp"
+            android:background="@drawable/rounded_bottom_border">
+
+            <!-- City Name TextView -->
+            <TextView
+                android:id="@+id/cityTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/glasgow"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:paddingBottom="8dp" />
+
+            <!-- Update Button -->
+            <Button
+                android:id="@+id/updateButton1"
+                android:layout_width="112dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/button_background"
+                android:drawableStart="@drawable/dot"
+                android:gravity="center"
+                android:paddingStart="16dp"
+                android:paddingEnd="2dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="8dp"
+                android:text="@string/updating"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Weather Icon ImageView -->
+            <ImageView
+                android:id="@+id/weatherImageView"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:paddingBottom="2dp" />
+
+            <!-- Temperature TextView -->
+            <TextView
+                android:id="@+id/tempTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/temperature"
+                android:textColor="@color/white"
+                android:paddingBottom="2dp" />
+
+            <!-- Weather Condition TextView -->
+            <TextView
+                android:id="@+id/conditionTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/weather_condition"
+                android:textColor="@color/white"
+                android:paddingBottom="2dp" />
+
+            <!-- Date TextView -->
+            <TextView
+                android:id="@+id/weatherDateTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/date"
+                android:textColor="@color/white"
+                android:paddingBottom="2dp" />
+
+            <!-- Weather Observation Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp"
+                android:paddingTop="8dp">
+
+                <!-- Wind Observation -->
+                <LinearLayout
+                    android:layout_width="104dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:paddingBottom="8dp">
+
+                    <ImageView
+                        android:id="@+id/windImageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/windy" /> <!-- Replace with your wind icon -->
+
+                    <TextView
+                        android:id="@+id/windValueTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="4dp"
+                        android:text="@string/wind_value"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/windTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="4dp"
+                        android:text="@string/wind_direction"
+                        android:textColor="@color/white"/>
+
+                </LinearLayout>
+
+                <!-- Humidity Observation -->
+                <LinearLayout
+                    android:layout_width="106dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:paddingBottom="8dp">
+
+                    <ImageView
+                        android:id="@+id/humidityImageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/humidity" /> <!-- Replace with your humidity icon -->
+
+                    <TextView
+                        android:id="@+id/humidityValueTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="4dp"
+                        android:text="@string/humidity_value"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/humidityTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="4dp"
+                        android:text="@string/humidity"
+                        android:textColor="@color/white"/>
+
+                </LinearLayout>
+
+                <!-- Pollution Observation -->
+                <LinearLayout
+                    android:layout_width="108dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:paddingBottom="8dp">
+
+                    <ImageView
+                        android:id="@+id/pollutionImageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ecology" /> <!-- Replace with your humidity icon -->
+
+                    <TextView
+                        android:id="@+id/pollutionValueTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="4dp"
+                        android:text="@string/pollution_value"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/pollutionTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="4dp"
+                        android:text="@string/pollution"
+                        android:textColor="@color/white"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- TextView and Button on the same line -->
+        <LinearLayout
+            android:id="@+id/todayWeatherLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:gravity="center_vertical"
+            tools:ignore="NotSibling">
+
+            <TextView
+                android:id="@+id/DayTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="8dp"
+                android:text="@string/today"
+                android:textColor="@color/midnight_blue"
+                android:textStyle="bold"
+                android:textSize="24sp" />
+
+            <Space
+                android:layout_width="115dp"
+                android:layout_height="wrap_content" />
+
+            <!-- Button for "3 Days Forecast" -->
+            <Button
+                android:id="@+id/weatherButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_3_days_forecast"
+                android:textAllCaps="false"
+                android:textColor="@color/coral"
+                android:background="@drawable/button_selector"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:textSize="12sp"
+                android:drawableEnd="@drawable/baseline_arrow_forward_ios_24"
+                android:layout_marginStart="8dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:gravity="center"
+            android:layout_marginTop="16dp">
+
+            <!-- Min Temperature Layout -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <!-- Min Temperature Label TextView -->
+                <TextView
+                    android:id="@+id/minTempLabelTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/min_temp"
+                    android:textColor="@color/coral"
+                    android:paddingEnd="8dp" />
+
+                <!-- Min Temperature Value TextView -->
+                <TextView
+                    android:id="@+id/minTempTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Value"
+                    android:textColor="@color/teal" />
+
+                <TextView
+                    android:id="@+id/minTempFahrenhTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="()"
+                    android:textColor="@color/teal" />
+
+            </LinearLayout>
+
+            <!-- Space between Min and Max Temperatures -->
+            <Space
+                android:layout_width="20dp"
+                android:layout_height="wrap_content" />
+
+            <!-- Max Temperature Layout -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/maxTempLabelTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/max_temp"
+                    android:textColor="@color/coral"
+                    android:paddingEnd="8dp" />
+
+                <!-- Max Temperature Value TextView -->
+                <TextView
+                    android:id="@+id/maxTempTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Value"
+                    android:textColor="@color/teal" />
+
+                <TextView
+                    android:id="@+id/maxTempFahrenTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="()"
+                    android:textColor="@color/teal" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <!-- Sunrise and Sunset Images with Times -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <!-- Sunrise Section -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingEnd="16dp">
+
+                <ImageView
+                    android:id="@+id/sunrise1ImageView"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/sunrise"
+                    android:paddingEnd="8dp"
+                    android:paddingStart="8dp"/>
+
+                <TextView
+                    android:id="@+id/sunrise1TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sunrise"
+                    android:textColor="@color/coral" />
+
+                <TextView
+                    android:id="@+id/sunriseTimeValueTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sunrise_time"
+                    android:textColor="@color/teal" />
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="120dp"
+                android:layout_height="wrap_content" />
+
+            <!-- Sunset Section -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingEnd="16dp">
+
+                <ImageView
+                    android:id="@+id/sunset1ImageView"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/sunset"
+                    android:paddingEnd="8dp"
+                    android:paddingStart="8dp"/>
+
+                <TextView
+                    android:id="@+id/sunsetTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="16dp"
+                    android:text="@string/sunset"
+                    android:textColor="@color/coral" />
+
+                <TextView
+                    android:id="@+id/sunsetTimeValueTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sunrise_time"
+                    android:textColor="@color/teal" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="BottomNavigationViewStyle" parent="Widget.Design.BottomNavigationView">
+        <item name="android:background">@color/teal</item>
+    </style>
+
+    <style name="CustomToolbarTheme" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="colorControlNormal">@color/coral</item>
+    </style>
+    <style name="CustomPopupMenuTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:popupBackground">@color/orange</item>
+        <item name="android:textColor">@color/blue_purple</item>
+    </style>
+    <style name="CustomAlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@android:color/white</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:background">#008577</item>
+    </style>
+    <style name="CustomTimePickerTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:timePickerStyle">@style/CustomTimePickerStyle</item>
+    </style>
+
+    <style name="CustomTimePickerStyle" parent="android:Widget.Material.TimePicker">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+
+
+</resources>

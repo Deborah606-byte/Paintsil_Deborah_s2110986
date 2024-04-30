@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference
+        android:key="update_time_morning"
+        android:title="Morning Update Time"
+        android:summary="Select the time for morning updates"
+        android:defaultValue="08:00"
+        android:entries="@array/update_times"
+        android:entryValues="@array/update_times_values" />
+
+    <ListPreference
+        android:key="update_time_evening"
+        android:title="Evening Update Time"
+        android:summary="Select the time for evening updates"
+        android:defaultValue="20:00"
+        android:entries="@array/update_times"
+        android:entryValues="@array/update_times_values" />
+</PreferenceScreen>
