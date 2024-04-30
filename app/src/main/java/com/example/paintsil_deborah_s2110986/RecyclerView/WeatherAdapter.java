@@ -22,7 +22,7 @@ import java.util.List;
 public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder> {
 
     public interface OnItemClickListener {
-        void onItemSelected(WeatherItem weatherItem); // Renamed method
+        void onItemSelected(WeatherItem weatherItem);
         void onItemClick(View view, WeatherItem weatherItem);
     }
     private List<WeatherItem> weatherItems;

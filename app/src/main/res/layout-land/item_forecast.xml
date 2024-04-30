@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp">
+
+    <!-- Day -->
+    <TextView
+        android:id="@+id/dayTextView"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Day"
+        android:textColor="@color/teal"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <!-- Icon Image -->
+    <ImageView
+        android:id="@+id/dayIconImageView"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:src="@drawable/day_clear"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@id/dayTextView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        android:layout_marginTop="8dp" /> <!-- Adjust this value as needed -->
+
+    <!-- Condition -->
+    <TextView
+        android:id="@+id/dayConditionTextView"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Clear"
+        android:textColor="@color/teal"
+        android:textSize="12sp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@id/dayIconImageView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <!-- Temperature -->
+    <TextView
+        android:id="@+id/dayTemperatureTextView"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="20°C"
+        android:textStyle="bold"
+        android:textColor="@color/midnight_blue"
+        android:textSize="12sp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@id/dayConditionTextView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

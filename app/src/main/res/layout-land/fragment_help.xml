@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".HelpFragment"
+    android:background="@color/platinum">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:padding="20dp">
+
+        <!-- Get Started Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Get Started"
+            android:textSize="18sp"
+            android:textColor="@color/midnight_blue"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="This is how the app works: the user must first search for the city's name and the list of cities with the weather info is already displayed in a list view, 6 cities, so when you click on a card, it will give you a detailed forecast for that day for that city, like today. You can also view the 3 days forecast for that city by clicking on the 3 days forecast button, you will see the 3 days forecast with the weather observation."
+            android:textColor="@color/black"
+            android:layout_marginBottom="14dp"/>
+
+        <!-- Location Page Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Location Page"
+            android:textSize="18sp"
+            android:textColor="@color/midnight_blue"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="The location page helps a user to select a location to be able to view the weather info."
+            android:textColor="@color/black"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- FAQs Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FAQs"
+            android:textSize="18sp"
+            android:textColor="@color/midnight_blue" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/FAQrecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Acknowledgement Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Acknowledgement"
+            android:textSize="24sp"
+            android:textColor="@color/midnight_blue"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/weather_information"
+            android:textColor="@color/black"
+            android:layout_marginBottom="14dp"/>
+
+
+    </LinearLayout>
+
+</ScrollView>
+
+
+
+
+

@@ -5,14 +5,13 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/platinum"
+        tools:context=".AboutFragment">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/platinum"
-            tools:context=".AboutFragment">
-
-            <ScrollView
+                <ScrollView
                 android:id="@+id/scrollView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -38,9 +37,10 @@
                         android:textSize="18sp" />
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="500dp"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
+                        android:gravity="center"
                         android:padding="16dp">
 
                         <!-- ImageView for the weather icon -->
@@ -52,7 +52,7 @@
                             android:layout_marginTop="8dp"/>
 
                         <Space
-                            android:layout_width="40dp"
+                            android:layout_width="60dp"
                             android:layout_height="wrap_content" />
 
                         <!-- LinearLayout for the weather details (temperature, day, and weather condition) -->
@@ -298,17 +298,17 @@
 
                 <!-- First Row -->
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="670dp"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <!-- Temperature Observation -->
+                    <!-- UV Observation -->
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:orientation="vertical"
                         android:gravity="center"
+                        android:orientation="vertical"
                         android:paddingBottom="8dp">
 
                         <ImageView
@@ -324,8 +324,8 @@
                             android:paddingStart="8dp"
                             android:paddingEnd="4dp"
                             android:text="1"
-                            android:textSize="12sp"
-                            android:textColor="@color/midnight_blue"/>
+                            android:textColor="@color/midnight_blue"
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/uvTitleTextView"
@@ -334,8 +334,8 @@
                             android:paddingStart="8dp"
                             android:paddingEnd="4dp"
                             android:text="UV Risk"
-                            android:textSize="14sp"
-                            android:textColor="@color/teal"/>
+                            android:textColor="@color/teal"
+                            android:textSize="14sp" />
 
                     </LinearLayout>
 
@@ -344,8 +344,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:orientation="vertical"
                         android:gravity="center"
+                        android:orientation="vertical"
                         android:paddingBottom="8dp">
 
                         <ImageView
@@ -361,8 +361,8 @@
                             android:paddingStart="8dp"
                             android:paddingEnd="4dp"
                             android:text="Westerly"
-                            android:textSize="12sp"
-                            android:textColor="@color/midnight_blue"/>
+                            android:textColor="@color/midnight_blue"
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/windTitleTextView"
@@ -371,8 +371,8 @@
                             android:paddingStart="8dp"
                             android:paddingEnd="4dp"
                             android:text="Wind Direction"
-                            android:textSize="14sp"
-                            android:textColor="@color/teal"/>
+                            android:textColor="@color/teal"
+                            android:textSize="14sp" />
 
                     </LinearLayout>
 
@@ -381,8 +381,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:orientation="vertical"
                         android:gravity="center"
+                        android:orientation="vertical"
                         android:paddingBottom="8dp">
 
                         <ImageView
@@ -398,8 +398,8 @@
                             android:paddingStart="8dp"
                             android:paddingEnd="4dp"
                             android:text="13mph"
-                            android:textSize="12sp"
-                            android:textColor="@color/midnight_blue"/>
+                            android:textColor="@color/midnight_blue"
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/windSpeedTitleTextView"
@@ -407,9 +407,9 @@
                             android:layout_height="wrap_content"
                             android:paddingStart="8dp"
                             android:paddingEnd="4dp"
-                            android:textSize="14sp"
                             android:text="Wind Speed"
-                            android:textColor="@color/teal"/>
+                            android:textColor="@color/teal"
+                            android:textSize="14sp" />
 
                     </LinearLayout>
 
@@ -417,7 +417,7 @@
 
                 <!-- Second Row -->
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="670dp"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
