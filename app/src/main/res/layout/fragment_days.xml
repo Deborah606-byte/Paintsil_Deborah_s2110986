@@ -135,6 +135,7 @@
                                 android:paddingStart="8dp"
                                 android:paddingEnd="4dp"
                                 android:text="@string/wind_value"
+                                android:textSize="12sp"
                                 android:textColor="@color/white"/>
 
                             <TextView
@@ -144,6 +145,7 @@
                                 android:paddingStart="8dp"
                                 android:paddingEnd="4dp"
                                 android:text="@string/wind_direction"
+                                android:textSize="14sp"
                                 android:textColor="@color/white"/>
 
                         </LinearLayout>
@@ -170,6 +172,7 @@
                                 android:paddingStart="8dp"
                                 android:paddingEnd="4dp"
                                 android:text="@string/humidity_value"
+                                android:textSize="12sp"
                                 android:textColor="@color/white"/>
 
                             <TextView
@@ -179,6 +182,7 @@
                                 android:paddingStart="8dp"
                                 android:paddingEnd="4dp"
                                 android:text="@string/humidity"
+                                android:textSize="14sp"
                                 android:textColor="@color/white"/>
 
                         </LinearLayout>
@@ -205,6 +209,7 @@
                                 android:paddingStart="8dp"
                                 android:paddingEnd="4dp"
                                 android:text="@string/pollution_value"
+                                android:textSize="12sp"
                                 android:textColor="@color/white"/>
 
                             <TextView
@@ -214,6 +219,7 @@
                                 android:paddingStart="8dp"
                                 android:paddingEnd="4dp"
                                 android:text="@string/pollution"
+                                android:textSize="14sp"
                                 android:textColor="@color/white"/>
 
                         </LinearLayout>
@@ -322,7 +328,8 @@
                             android:layout_height="wrap_content"
                             android:paddingStart="8dp"
                             android:paddingEnd="4dp"
-                            android:text="7°C (44°F)"
+                            android:text="1"
+                            android:textSize="12sp"
                             android:textColor="@color/midnight_blue"/>
 
                         <TextView
@@ -332,6 +339,7 @@
                             android:paddingStart="8dp"
                             android:paddingEnd="4dp"
                             android:text="UV Risk"
+                            android:textSize="14sp"
                             android:textColor="@color/teal"/>
 
                     </LinearLayout>
@@ -358,6 +366,7 @@
                             android:paddingStart="8dp"
                             android:paddingEnd="4dp"
                             android:text="Westerly"
+                            android:textSize="12sp"
                             android:textColor="@color/midnight_blue"/>
 
                         <TextView
@@ -367,6 +376,7 @@
                             android:paddingStart="8dp"
                             android:paddingEnd="4dp"
                             android:text="Wind Direction"
+                            android:textSize="14sp"
                             android:textColor="@color/teal"/>
 
                     </LinearLayout>
@@ -393,6 +403,7 @@
                             android:paddingStart="8dp"
                             android:paddingEnd="4dp"
                             android:text="13mph"
+                            android:textSize="12sp"
                             android:textColor="@color/midnight_blue"/>
 
                         <TextView
@@ -401,6 +412,7 @@
                             android:layout_height="wrap_content"
                             android:paddingStart="8dp"
                             android:paddingEnd="4dp"
+                            android:textSize="14sp"
                             android:text="Wind Speed"
                             android:textColor="@color/teal"/>
 
@@ -436,6 +448,7 @@
                             android:paddingStart="8dp"
                             android:paddingEnd="4dp"
                             android:text="81%"
+                            android:textSize="12sp"
                             android:textColor="@color/midnight_blue"/>
 
                         <TextView
@@ -445,6 +458,7 @@
                             android:paddingStart="8dp"
                             android:paddingEnd="4dp"
                             android:text="Humidity"
+                            android:textSize="14sp"
                             android:textColor="@color/teal"/>
 
                     </LinearLayout>
@@ -471,6 +485,7 @@
                             android:paddingStart="8dp"
                             android:paddingEnd="4dp"
                             android:text="1016mb"
+                            android:textSize="12sp"
                             android:textColor="@color/midnight_blue"/>
 
                         <TextView
@@ -480,6 +495,7 @@
                             android:paddingStart="8dp"
                             android:paddingEnd="4dp"
                             android:text="Pressure"
+                            android:textSize="14sp"
                             android:textColor="@color/teal"/>
 
                     </LinearLayout>
@@ -506,6 +522,7 @@
                             android:paddingStart="8dp"
                             android:paddingEnd="4dp"
                             android:text="--"
+                            android:textSize="12sp"
                             android:textColor="@color/midnight_blue"/>
 
                         <TextView
@@ -515,6 +532,7 @@
                             android:paddingStart="8dp"
                             android:paddingEnd="4dp"
                             android:text="Visibility"
+                            android:textSize="14sp"
                             android:textColor="@color/teal"/>
 
                     </LinearLayout>

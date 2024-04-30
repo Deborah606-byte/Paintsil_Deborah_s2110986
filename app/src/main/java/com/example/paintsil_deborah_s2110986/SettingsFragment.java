@@ -156,6 +156,9 @@ public class SettingsFragment extends Fragment {
     public class WeatherUpdateAlarmReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
+            // Display toast message
+            Toast.makeText(context, "Weather data is being updated...", Toast.LENGTH_SHORT).show();
+
             // Start the UpdateWeatherService to update the weather data
             Intent updateIntent = new Intent(context, UpdateWeatherService.class);
             context.startService(updateIntent);
