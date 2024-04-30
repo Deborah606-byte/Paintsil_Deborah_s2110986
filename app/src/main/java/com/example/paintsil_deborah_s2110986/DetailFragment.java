@@ -139,6 +139,8 @@ public class DetailFragment extends Fragment {
                 }
             }
         });
+
+
         Button sequenceButton = view.findViewById(R.id.sequenceButton);
 
         // Normalize the city name from the WeatherItem
