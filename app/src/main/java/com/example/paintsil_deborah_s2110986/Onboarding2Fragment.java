@@ -33,7 +33,6 @@ public class Onboarding2Fragment extends Fragment {
         ViewPager2 viewPager = (ViewPager2) requireActivity().findViewById(R.id.viewPager);
 
         nextButton.setOnClickListener(v -> {
-            // Navigate to the next onboarding screen
             int nextItem = viewPager.getCurrentItem() + 1;
             if (nextItem < viewPager.getAdapter().getItemCount()) {
                 viewPager.setCurrentItem(nextItem, true);

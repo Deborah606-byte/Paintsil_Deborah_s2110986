@@ -119,8 +119,6 @@ public class DaysFragment extends Fragment {
                 e.printStackTrace();
                 // Handle exceptions
                 getActivity().runOnUiThread(() -> {
-                    // Display an error message to the user
-                    // This is a placeholder. You'll need to implement the logic to display an error message.
                 });
             }
         }).start();
@@ -147,7 +145,7 @@ public class DaysFragment extends Fragment {
             TextView nextDayPollutionTextView = view.findViewById(R.id.nextDayPollutionTextView);
             nextDayPollutionTextView.setText(secondDayForecast.getPollution());
 
-            // Use the getWeatherIcon method from ForecastAdapter to set the weather icon
+            // Used the getWeatherIcon method from ForecastAdapter to set the weather icon
             int weatherIconResource = ForecastAdapter.getWeatherIcon(secondDayForecast.getWeatherCondition());
             nextDayweatherIconImageView.setImageResource(weatherIconResource);
         }
@@ -157,7 +155,7 @@ public class DaysFragment extends Fragment {
         if (!forecastItems.isEmpty()) {
             ThreeDaysForecastItem currentDayForecast = forecastItems.get(0); // Since the current day is always at index 0
 
-            // Update the UI with the current day's forecast details
+            // Updating the UI with the current day's forecast details
             TextView UVValueTextView = view.findViewById(R.id.uvValueTextView);
             UVValueTextView.setText(currentDayForecast.getWeatherUV());
 

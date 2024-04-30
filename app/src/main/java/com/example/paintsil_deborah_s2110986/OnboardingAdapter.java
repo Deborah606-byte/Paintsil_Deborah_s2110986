@@ -28,7 +28,7 @@ public class OnboardingAdapter extends FragmentStateAdapter {
                 return new Onboarding3Fragment();
             case 3:
                 return new Onboarding4Fragment();
-            // Add more cases for additional screens
+
             default:
                 return new Onboarding1Fragment();
         }
@@ -36,7 +36,7 @@ public class OnboardingAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 4; // Number of onboarding screens
+        return 4;
     }
 }
 

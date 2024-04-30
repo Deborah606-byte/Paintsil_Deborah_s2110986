@@ -67,15 +67,10 @@ public class HomeFragment extends Fragment {
         searchCityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Get the FragmentManager
                 FragmentManager fragmentManager = getFragmentManager();
-                // Begin the transaction
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
-                // Replace the current fragment with the SearchFragment
                 transaction.replace(R.id.container, new SearchFragment());
-                // Add the transaction to the back stack
                 transaction.addToBackStack(null);
-                // Commit the transaction
                 transaction.commit();
             }
         });

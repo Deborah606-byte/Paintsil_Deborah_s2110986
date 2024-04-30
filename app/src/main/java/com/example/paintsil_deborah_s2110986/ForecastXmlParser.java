@@ -88,7 +88,6 @@ public class ForecastXmlParser {
                 String description = parser.nextText();
                 parseDescription(description, currentForecastItem);
                 break;
-            // Add additional cases for other tags you want to parse
         }
     }
 
@@ -103,12 +102,10 @@ public class ForecastXmlParser {
             String minTemperature = matcher.group(3).trim(); // Extract the minimum temperature
             String maxTemperature = matcher.group(4).trim(); // Extract the maximum temperature
 
-            // If the title contains "Tonight", set the day as "Today"
             if (day.contains("Tonight")) {
                 day = "Today";
             }
 
-            // Set the extracted information in the currentForecastItem object
             currentForecastItem.setDay(day);
             currentForecastItem.setWeatherCondition(weatherCondition);
             currentForecastItem.setTemperature(minTemperature + "°C / " + maxTemperature + "°C");
@@ -140,7 +137,6 @@ public class ForecastXmlParser {
             String uvRisk = matcher.group(8);
             String pollution = matcher.group(9);
 
-            // Set the extracted information in the currentForecastItem object
             currentForecastItem.setWeatherUV(uvRisk);
             currentForecastItem.setWeatherWindDirection(windDirection);
             currentForecastItem.setWeatherWindSpeed(windSpeed + "mph");
@@ -158,7 +154,6 @@ public class ForecastXmlParser {
             Log.d("ForecastXmlParser", "Extracted Humidity: " + humidity + "%");
             Log.d("ForecastXmlParser", "Extracted Pollution: " + pollution);
         } else {
-            // Log if the pattern does not match
             Log.d("ForecastXmlParser", "Pattern did not match the description: " + description);
         }
     }

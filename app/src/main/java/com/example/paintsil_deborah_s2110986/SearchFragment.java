@@ -46,38 +46,30 @@ public class SearchFragment extends Fragment implements WeatherAdapter.OnItemCli
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
-        // Initialize the RecyclerView
         recyclerView = view.findViewById(R.id.recyclerViewCities);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        // Initialize your weatherItems list here
         weatherItems = new ArrayList<>();
         filteredWeatherItems = new ArrayList<>();
 
-        // Create an instance of the WeatherAdapter
         weatherAdapter = new WeatherAdapter(filteredWeatherItems, this);
         recyclerView.setAdapter(weatherAdapter);
 
-        // Find the EditText and set the OnEditorActionListener
         EditText searchCityEditText = view.findViewById(R.id.searchCityEditText);
         searchCityEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // Not used
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // Filter the weather items as the user types
                 filterWeatherItems(s.toString());
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                // Not used
             }
         });
 
@@ -139,8 +131,7 @@ public class SearchFragment extends Fragment implements WeatherAdapter.OnItemCli
                 e.printStackTrace();
                 // Handle exceptions
                 getActivity().runOnUiThread(() -> {
-                    // Display an error message to the user
-                    // This is a placeholder. You'll need to implement the logic to display an error message.
+
                 });
             }
         }).start();
@@ -166,7 +157,6 @@ public class SearchFragment extends Fragment implements WeatherAdapter.OnItemCli
         }
         weatherAdapter.notifyDataSetChanged();
 
-        // Check if the filtered list is empty and the query is not empty
         if (filteredWeatherItems.isEmpty() && !query.isEmpty()) {
             // Display a toast message indicating the city is not available
             Toast.makeText(getContext(), "City '" + query + "' not available", Toast.LENGTH_SHORT).show();
@@ -175,8 +165,7 @@ public class SearchFragment extends Fragment implements WeatherAdapter.OnItemCli
 
     @Override
     public void onItemSelected(WeatherItem weatherItem) {
-        // Handle item selection here
-        // This method is now correctly named and matches the interface definition
+
     }
 
     @Override

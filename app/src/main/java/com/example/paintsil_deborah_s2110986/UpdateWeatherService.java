@@ -38,12 +38,8 @@ public class UpdateWeatherService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d("UpdateWeatherService", "Service started at: " + new Date().toString());
-        // Call the method to update the weather data
         updateWeatherData();
 
-        // Update the UI
-        // This is a simplified example. In a real app, you might use a LocalBroadcastManager
-        // or another method to communicate with your activity or fragment.
         Intent updateIntent = new Intent("com.example.paintsil_deborah_s2110986.UPDATE_WEATHER");
         updateIntent.putExtra("isUpdateSuccessful", true);
         LocalBroadcastManager.getInstance(this).sendBroadcast(updateIntent);
@@ -64,12 +60,9 @@ public class UpdateWeatherService extends Service {
                     int responseCode = connection.getResponseCode();
                     if (responseCode == HttpURLConnection.HTTP_OK) {
                         InputStream inputStream = connection.getInputStream();
-                        // Parse the input stream to extract weather data
-                        // Save the weather data to your local storage (e.g., SharedPreferences, SQLite database)
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
-                    // Handle the error
                 }
             }).start();
         }

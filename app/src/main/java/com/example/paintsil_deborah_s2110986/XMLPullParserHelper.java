@@ -32,14 +32,14 @@ public class XMLPullParserHelper {
 
     public static WeatherItem parseFirstWeatherItem(InputStream inputStream) throws XmlPullParserException {
         WeatherItem firstItem = null;
-        String cityName = null; // Initialize cityName variable
+        String cityName = null;
         try {
             XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
             XmlPullParser parser = factory.newPullParser();
             parser.setInput(inputStream, null);
 
             int eventType = parser.getEventType();
-            boolean isInChannel = false; // Flag to track if we are inside the <channel> element
+            boolean isInChannel = false;
 
             while (eventType != XmlPullParser.END_DOCUMENT) {
                 String tagName = null;
@@ -47,18 +47,17 @@ public class XMLPullParserHelper {
                     case XmlPullParser.START_TAG:
                         tagName = parser.getName();
                         if (TAG_CHANNEL.equals(tagName)) {
-                            isInChannel = true; // Set flag to true when entering <channel>
+                            isInChannel = true;
                         } else if (TAG_TITLE.equals(tagName) && isInChannel) {
                             String title = parser.nextText();
                             cityName = parseCityNameFromTitle(title); // Extract city name from the <channel>'s <title>
                             Log.d("XmlPullParserHelper", "Channel Title: " + title);
                             Log.d("XmlPullParserHelper", "Extracted City Name: " + cityName);
-                            isInChannel = false; // Set flag to false after extracting city name to ensure it's only done once
+                            isInChannel = false;
                         } else if (TAG_ITEM.equals(tagName) && !isInChannel) {
-                            // Create a new WeatherItem instance for each <item> found
                             WeatherItem currentItem = new WeatherItem();
-                            currentItem.setCityName(cityName); // Set the city name to the current item
-                            boolean isFirstItem = true; // Flag to track the first item
+                            currentItem.setCityName(cityName);
+                            boolean isFirstItem = true;
 
                             while (eventType != XmlPullParser.END_TAG || !TAG_ITEM.equals(parser.getName())) {
                                 eventType = parser.next();
@@ -68,10 +67,10 @@ public class XMLPullParserHelper {
                                 if (eventType == XmlPullParser.END_TAG) {
                                     if (TAG_ITEM.equals(parser.getName())) {
                                         if (isFirstItem) {
-                                            firstItem = currentItem; // Assign the first item to the return variable
-                                            isFirstItem = false; // Ensure we only process the first item
+                                            firstItem = currentItem;
+                                            isFirstItem = false;
                                         }
-                                        currentItem = null; // Reset the current item
+                                        currentItem = null;
                                     }
                                     continue;
                                 }
@@ -94,25 +93,22 @@ public class XMLPullParserHelper {
                         break;
                     case XmlPullParser.END_TAG:
                         if (TAG_CHANNEL.equals(parser.getName())) {
-                            isInChannel = false; // Set flag to false when exiting <channel>
+                            isInChannel = false;
                         }
                         break;
                     default:
-                        // Do nothing
                 }
                 eventType = parser.next();
             }
         } catch (XmlPullParserException | IOException e) {
             e.printStackTrace();
-            // Handle the exception appropriately
         }
 
-        // Set the city name to the first item
         if (firstItem != null && cityName != null) {
             firstItem.setCityName(cityName);
         }
 
-        return firstItem; // Return the first item
+        return firstItem;
     }
 
 
@@ -132,7 +128,6 @@ public class XMLPullParserHelper {
         // Set the city name extracted from the title
         item.setCityName(cityName);
 
-        // Updated pattern to account for different title formats
         Pattern pattern = Pattern.compile(".*?: (.*?), Minimum Temperature: (-?\\d+)°C .*? Maximum Temperature: (-?\\d+)°C .*");
         Matcher matcher = pattern.matcher(title);
         if (matcher.find()) {
@@ -177,7 +172,6 @@ public class XMLPullParserHelper {
 
     private static void parseDescription(String description, WeatherItem item) {
         Log.d("XmlPullParserHelper", "Parsing description: " + description);
-        // Updated pattern to correctly match sunrise and sunset times in the provided format
         Pattern pattern = Pattern.compile("Wind Direction: (\\w+),?|Wind Speed: (\\d+mph),?|Humidity: (\\d+)%,?|Pollution: (\\w+),?|Minimum Temperature: (\\d+)°[CF] \\((\\d+)°[CF]\\),?|Maximum Temperature: (\\d+)°[CF] \\((\\d+)°[CF]\\),?|Sunrise: (\\d{2}:\\d{2} [A-Z]+),?|Sunset: (\\d{2}:\\d{2} [A-Z]+),?");
         Matcher matcher = pattern.matcher(description);
         String wind = "", humidity = "", pollution = "", minTemperature = "", maxTemperature = "", sunrise = "", sunset = "";

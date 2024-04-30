@@ -39,8 +39,6 @@ public class Onboarding1Fragment extends Fragment {
             if (nextItem < viewPager.getAdapter().getItemCount()) {
                 viewPager.setCurrentItem(nextItem, true);
             } else {
-                // Navigate to the main activity
-                // Replace "MainActivity.class" with your main activity class
                 Intent intent = new Intent(requireContext(), MainActivity.class);
                 startActivity(intent);
                 requireActivity().finish(); // Close the onboarding activity
@@ -48,8 +46,6 @@ public class Onboarding1Fragment extends Fragment {
         });
 
         skipButton.setOnClickListener(v -> {
-            // Navigate to the main activity
-            // Replace "MainActivity.class" with your main activity class
             Intent intent = new Intent(requireContext(), MainActivity.class);
             startActivity(intent);
             requireActivity().finish(); // Close the onboarding activity

@@ -37,15 +37,15 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         holder.dayTextView.setText(forecastItem.getDay());
         holder.conditionTextView.setText(forecastItem.getWeatherCondition());
         holder.temperatureTextView.setText(forecastItem.getTemperature());
-        // Set weather icon based on weather condition
+        // Sets weather icon based on weather condition
         int weatherIconResourceId = getWeatherIcon(forecastItem.getWeatherCondition());
         holder.weatherIconImageView.setImageResource(weatherIconResourceId);
     }
 
     public static String categorizeWeatherCondition(String weatherCondition) {
-        // Check if weatherCondition is null
+        // Checks if weatherCondition is null
         if (weatherCondition == null) {
-            // Handle the null case, for example, by returning a default value
+            // Handles the null case, for example, by returning a default value
             return "Unknown";
         }
 
@@ -69,7 +69,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         } else if (condition.contains("fog")) {
             return "Fog";
         } else {
-            return "Unknown"; // Default category if no match found
+            return "Unknown";
         }
     }
 

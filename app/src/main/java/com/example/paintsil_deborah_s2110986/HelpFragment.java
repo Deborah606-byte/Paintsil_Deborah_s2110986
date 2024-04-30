@@ -25,10 +25,8 @@ public class HelpFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_help, container, false);
 
-        // Sample questions and answers
         List<FAQItem> faqItems = new ArrayList<>();
         faqItems.add(new FAQItem("How do I select a location to view the weather?", "You can select a location by searching for the city's name. The app will display a list of cities with weather information. Click on a city to view its detailed forecast."));
         faqItems.add(new FAQItem("How do I view the 3-day forecast for a city?", "After selecting a city, you can view the 3-day forecast by clicking on the '3 days forecast' button. This will show you the weather for the next three days, including min/max temperatures and weather classifications."));
@@ -49,11 +47,9 @@ public class HelpFragment extends Fragment {
         faqItems.add(new FAQItem("What if I have a question not listed here?",
                 "If you have any other questions or need further assistance, please refer to the app's about section for more information."));
 
-        // Initialize RecyclerView
         RecyclerView recyclerView = view.findViewById(R.id.FAQrecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        // Set adapter
         FAQListAdapter adapter = new FAQListAdapter(faqItems);
         recyclerView.setAdapter(adapter);
 

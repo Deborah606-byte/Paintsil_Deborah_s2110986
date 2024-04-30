@@ -55,26 +55,21 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
         View view = inflater.inflate(R.layout.fragment_location, container, false);
         mContext = getActivity();
 
-        // Initialize the SearchView
         searchView = view.findViewById(R.id.citySearchSearchView);
-        // Get the EditText inside the SearchView
         EditText searchEditText = searchView.findViewById(androidx.appcompat.R.id.search_src_text);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                // Handle search query submission
                 searchCity(query);
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                // Optional: Handle text change
                 return false;
             }
         });
 
-        // Check for Google Play Services
         GoogleApiAvailability googleApiAvailability = GoogleApiAvailability.getInstance();
         int status = googleApiAvailability.isGooglePlayServicesAvailable(getActivity());
         if (status != ConnectionResult.SUCCESS) {
@@ -82,11 +77,9 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
                 // Show dialog to resolve the error
                 googleApiAvailability.getErrorDialog(getActivity(), status, 2404).show();
             } else {
-                // Google Play Services is not supported
-                // Handle the error in your app
+
             }
         } else {
-            // Google Play Services is available and up to date
             SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
             mapFragment.getMapAsync(this);
         }
@@ -97,7 +90,6 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onResume() {
         super.onResume();
-        // Safely hide the action bar when the fragment is resumed
         if (getActivity() instanceof AppCompatActivity) {
             ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
         }
@@ -106,7 +98,6 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onPause() {
         super.onPause();
-        // Safely show the action bar when the fragment is paused
         if (getActivity() instanceof AppCompatActivity) {
             ((AppCompatActivity) getActivity()).getSupportActionBar().show();
         }
@@ -117,7 +108,6 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add markers for each city
         LatLng glasgow = new LatLng(55.8642, -4.2518);
         mMap.addMarker(new MarkerOptions().position(glasgow).title("Glasgow"));
 
@@ -136,11 +126,8 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
         LatLng bangladesh = new LatLng(23.684997, 90.356331);
         mMap.addMarker(new MarkerOptions().position(bangladesh).title("Bangladesh"));
 
-        // Move the camera to a specific location without adding a marker
-        // For this example, let's center the map on London
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mauritius, 10));
 
-        // Set up a listener for marker click.
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(final Marker marker) {
@@ -160,7 +147,6 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
         });
     }
 
-    // Weather Data Callback interface
     public interface WeatherDataCallback {
         void onWeatherDataReceived(WeatherItem weatherItem);
     }
@@ -208,19 +194,15 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
         View dialogView = inflater.inflate(R.layout.weather_location_item, null);
         builder.setView(dialogView);
 
-        // Set the city name
         builder.setTitle(cityName);
 
-        // Set the temperature
         TextView temperatureTextView = dialogView.findViewById(R.id.textView_temperature);
         temperatureTextView.setText("Temperature: " + weatherItem.getTemperature() + "°C");
         temperatureTextView.setTextColor(getResources().getColor(android.R.color.white));
 
-        // Set the weather image
         ImageView weatherImageView = dialogView.findViewById(R.id.locationImageView);
         weatherImageView.setImageResource(getWeatherIconResource(weatherItem.getWeatherCondition()));
 
-        // Set wind observation
         ImageView windyImageView = dialogView.findViewById(R.id.windyImageView);
         windyImageView.setImageResource(R.drawable.windy);
         TextView windyValueTextView = dialogView.findViewById(R.id.windyValueTextView);
@@ -230,7 +212,6 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
         windyTextView.setText("Wind Direction");
         windyTextView.setTextColor(getResources().getColor(android.R.color.white));
 
-        // Set humidity observation
         ImageView humidImageView = dialogView.findViewById(R.id.humideImageView);
         humidImageView.setImageResource(R.drawable.humidity);
         TextView humidValueTextView = dialogView.findViewById(R.id.humideValueTextView);
@@ -240,7 +221,6 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
         humidTextView.setText("Humidity");
         humidTextView.setTextColor(getResources().getColor(android.R.color.white));
 
-        // Set pollution observation
         ImageView polluteImageView = dialogView.findViewById(R.id.polluteImageView);
         polluteImageView.setImageResource(R.drawable.ecology);
         TextView polluteValueTextView = dialogView.findViewById(R.id.polluteValueTextView);
@@ -252,7 +232,6 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
 
         builder.setPositiveButton("OK", null);
 
-        // Create the AlertDialog object and return it
         AlertDialog dialog = builder.create();
         dialog.show();
     }
@@ -337,13 +316,11 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
         cities.put("Mauritius", new LatLng(-20.2855, 57.4783));
         cities.put("Bangladesh", new LatLng(23.684997, 90.356331));
 
-        // Move the camera to the city's location if it exists
         if (cities.containsKey(cityName)) {
             LatLng cityLocation = cities.get(cityName);
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(cityLocation, 10));
             mMap.addMarker(new MarkerOptions().position(cityLocation).title(cityName));
         } else {
-            // City not found, show a message
             Toast.makeText(getContext(), "City not found", Toast.LENGTH_SHORT).show();
         }
     }

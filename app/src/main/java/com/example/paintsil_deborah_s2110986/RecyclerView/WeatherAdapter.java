@@ -46,13 +46,13 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherV
         WeatherItem weatherItem = weatherItems.get(position);
         holder.itemView.setOnClickListener(v -> {
             // Pass the clicked item to the listener
-            listener.onItemClick(v, weatherItem); // Corrected to pass the view and the weatherItem
+            listener.onItemClick(v, weatherItem); //
         });
         holder.cityNameTextView.setText(weatherItem.getCityName());
         holder.weatherConditionTextView.setText(weatherItem.getWeatherCondition());
         holder.temperatureTextView.setText(weatherItem.getTemperature());
 
-        // Set the weather icon based on the weather condition
+        // Sets the weather icon based on the weather condition
         int iconResource = getWeatherIconResource(weatherItem.getWeatherCondition());
         holder.weatherIconImageView.setImageResource(iconResource);
     }

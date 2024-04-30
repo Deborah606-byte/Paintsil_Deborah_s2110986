@@ -40,7 +40,6 @@ public class DetailFragment extends Fragment {
     private WeatherItem weatherItem;
 
     public DetailFragment() {
-        // Required empty public constructor
     }
 
     private static final String[] CITY_NAMES = {
@@ -93,7 +92,7 @@ public class DetailFragment extends Fragment {
         TextView sunriseTimeValueTextView = view.findViewById(R.id.sunriseTimeValueTextView);
         TextView sunsetTimeValueTextView = view.findViewById(R.id.sunsetTimeValueTextView);
 
-        // Find the "3 Days Forecast" button
+        // the "3 Days Forecast" button
         Button forecastButton = view.findViewById(R.id.weatherButton);
 
         if (weatherItem != null) {
@@ -110,22 +109,21 @@ public class DetailFragment extends Fragment {
             maxTempFahrenTextView.setText("(" + weatherItem.getMaxTemperatureFahrenheit() + "°F )");
             sunriseTimeValueTextView.setText(weatherItem.getSunriseTime());
             sunsetTimeValueTextView.setText(weatherItem.getSunsetTime());
-            // Set other views with weather information
 
-            // Set the weather icon based on the weather condition
+            // Setting the weather icon based on the weather condition
             int iconResource = WeatherAdapter.getWeatherIconResource(weatherItem.getWeatherCondition());
             imageWeatherIcon.setImageResource(iconResource);
         }
 
-        // Set an OnClickListener for the button
+        // Setting an OnClickListener for the button
         forecastButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Fragment daysFragment = new DaysFragment();
                 Bundle bundle = new Bundle();
-                // Pass the URL to the DaysFragment
+                // Passing the URL to the DaysFragment
                 if (weatherItem != null && weatherItem.getUrls().length > 0) {
-                    bundle.putString("url", weatherItem.getUrls()[0]); // Accessing the first URL in the array
+                    bundle.putString("url", weatherItem.getUrls()[0]);
                     daysFragment.setArguments(bundle);
 
                     FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
@@ -133,8 +131,6 @@ public class DetailFragment extends Fragment {
                     transaction.addToBackStack(null); // Optional, to allow back navigation
                     transaction.commit();
                 } else {
-                    // Handle the case where the URLs array is empty or null
-                    // For example, display a toast indicating no URL available
                     Toast.makeText(getContext(), "No URL available", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -143,23 +139,19 @@ public class DetailFragment extends Fragment {
 
         Button sequenceButton = view.findViewById(R.id.sequenceButton);
 
-        // Normalize the city name from the WeatherItem
         String normalizedCityName = weatherItem.getCityName().trim().toLowerCase();
 
-        // Debugging: Log the normalized city name
         Log.d("DetailFragment", "Normalized city name: " + normalizedCityName);
 
-        // Find the position of this city in the city_names_array
         int pos = -1;
         for (int i = 0; i < CITY_NAMES.length; i++) {
             String normalizedArrayName = CITY_NAMES[i].trim().toLowerCase();
             if (normalizedArrayName.equals(normalizedCityName)) {
                 pos = i;
-                if (i+1 < CITY_NAMES.length) { // Check if i+1 is within bounds
+                if (i+1 < CITY_NAMES.length) {
                     sequenceButton.setText("View details for " + CITY_NAMES[i+1]);
                 } else {
-                    // Handle the case where i+1 is out of bounds, e.g., set a default text or wrap around to the first city
-                    sequenceButton.setText(CITY_NAMES[0]); // Example: set the text to the first city
+                    sequenceButton.setText(CITY_NAMES[0]);
                 }
                 break;
             }
@@ -167,19 +159,15 @@ public class DetailFragment extends Fragment {
 
 
 
-        if (pos != -1) { // Ensure the city name was found in the array
-            // Your existing code to set the sequence button text and handle the button click remains unchanged
+        if (pos != -1) {
         } else {
-            // Debugging: Log when the city name is not found
             Log.d("DetailFragment", "City not found in the list: " + weatherItem.getCityName());
             Toast.makeText(getContext(), "City not found in the list", Toast.LENGTH_SHORT).show();
         }
 
-        // Set an OnClickListener for the sequenceButton
         sequenceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Retrieve the current position of the city in the list
                 int currentPosition = -1;
                 for (int i = 0; i < CITY_NAMES.length; i++) {
                     if (CITY_NAMES[i].trim().toLowerCase().equals(normalizedCityName)) {
@@ -260,7 +248,6 @@ public class DetailFragment extends Fragment {
             // Create a new instance of DetailFragment
             DetailFragment detailFragment = new DetailFragment();
 
-            // Create a Bundle to pass the WeatherItem to the DetailFragment
             Bundle bundle = new Bundle();
             bundle.putParcelable("weatherItem", weatherItem);
             detailFragment.setArguments(bundle);

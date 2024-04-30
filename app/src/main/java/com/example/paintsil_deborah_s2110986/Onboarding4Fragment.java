@@ -31,11 +31,9 @@ public class Onboarding4Fragment extends Fragment {
         Button startButton = view.findViewById(R.id.startMainButton);
 
         startButton.setOnClickListener(v -> {
-            // Navigate to the main activity
-            // Replace "MainActivity.class" with your main activity class
             Intent intent = new Intent(requireContext(), MainActivity.class);
             startActivity(intent);
-            requireActivity().finish(); // Close the onboarding activity
+            requireActivity().finish();
         });
     }
 

@@ -30,8 +30,6 @@ public class SettingsFragment extends Fragment {
     private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            // No need to display toast message here
-            // This receiver is only responsible for handling broadcast about saving settings
             boolean isUpdateSuccessful = intent.getBooleanExtra("isUpdateSuccessful", false);
             if (isUpdateSuccessful) {
                 // Log successful update
@@ -78,8 +76,6 @@ public class SettingsFragment extends Fragment {
             }
         });
 
-        // Find the save button and set its click listener
-        // Find the save button and set its click listener
         Button saveButton = view.findViewById(R.id.saveButton);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override

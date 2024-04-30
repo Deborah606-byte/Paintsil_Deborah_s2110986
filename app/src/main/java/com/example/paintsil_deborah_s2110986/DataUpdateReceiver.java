@@ -14,13 +14,11 @@ public class DataUpdateReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        // Log the time the update was triggered
         Log.d("DataUpdateReceiver", "Data update triggered at: " + new Date().toString());
 
         // Show a toast message to the user
         Toast.makeText(context, "Weather update is in progress...", Toast.LENGTH_SHORT).show();
 
-        // Send a local broadcast if you need to notify other components in your app
         Intent updateIntent = new Intent("com.example.paintsil_deborah_s2110986.UPDATE_WEATHER_TRIGGERED");
         LocalBroadcastManager.getInstance(context).sendBroadcast(updateIntent);
 

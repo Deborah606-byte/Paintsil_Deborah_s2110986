@@ -47,7 +47,6 @@ public class FAQListAdapter extends RecyclerView.Adapter<FAQListAdapter.FAQViewH
             questionTextView = itemView.findViewById(R.id.questionTextView);
             answerTextView = itemView.findViewById(R.id.answerTextView);
 
-            // Toggle visibility of answerTextView on click
             questionTextView.setOnClickListener(v -> {
                 if (answerTextView.getVisibility() == View.GONE) {
                     answerTextView.setVisibility(View.VISIBLE);
