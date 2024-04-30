@@ -80,8 +80,18 @@
                     android:textColor="@color/midnight_blue" />
             </LinearLayout>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="s2110986"
+                android:textSize="10sp"/>
+
         </RelativeLayout>
 
     </ScrollView>
 
 </RelativeLayout>
+    <!--
+         Name: Deborah Ama Paintsil
+         Student ID: s2110986
+     -->

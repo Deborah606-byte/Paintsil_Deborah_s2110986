@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnBu
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setTitle("Forecastify");
+        getSupportActionBar().setTitle("Forecastify(s2110986)");
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -72,13 +72,13 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnBu
 
                 if (item.getItemId() == R.id.home) {
                     selectedFragment = homeFragment;
-                    title = "Weather";
+                    title = "Weather(s2110986)";
                 } else if (item.getItemId() == R.id.location) {
                     selectedFragment = locationFragment;
-                    title = "Search";
+                    title = "Search(s2110986)";
                 } else if (item.getItemId() == R.id.about) {
                     selectedFragment = aboutFragment;
-                    title = "About Us";
+                    title = "About Us(s2110986)";
                 }
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.container, selectedFragment).commit();
@@ -103,15 +103,15 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnBu
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.search) {
             getSupportFragmentManager().beginTransaction().replace(R.id.container, searchFragment).addToBackStack(null).commit();
-            getSupportActionBar().setTitle("Search");
+            getSupportActionBar().setTitle("Search(s2110986)");
             return true;
         } else if (item.getItemId() == R.id.settings) {
             getSupportFragmentManager().beginTransaction().replace(R.id.container, settingsFragment).addToBackStack(null).commit();
-            getSupportActionBar().setTitle("Settings");
+            getSupportActionBar().setTitle("Settings(s2110986)");
             return true;
         } else if (item.getItemId() == R.id.help) {
             getSupportFragmentManager().beginTransaction().replace(R.id.container, helpFragment).addToBackStack(null).commit();
-            getSupportActionBar().setTitle("Help");
+            getSupportActionBar().setTitle("Help(s2110986)");
             return true;
         } else {
             return super.onOptionsItemSelected(item);

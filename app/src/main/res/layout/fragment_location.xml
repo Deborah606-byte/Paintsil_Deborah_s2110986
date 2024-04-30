@@ -37,3 +37,7 @@
             android:layout_below="@id/citySearchSearchView"/>
     </RelativeLayout>
 </ScrollView>
+    <!--
+         Name: Deborah Ama Paintsil
+         Student ID: s2110986
+     -->

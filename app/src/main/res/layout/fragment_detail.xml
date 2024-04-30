@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/platinum">
+    android:background="@color/platinum"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -422,5 +423,33 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="32dp"
+            >
+
+            <Button
+                android:id="@+id/sequenceButton"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:text="View"
+                android:background="@drawable/home_button"
+                android:paddingStart="24dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="24dp"
+                android:paddingBottom="12dp"
+                android:gravity="center"
+                android:layout_marginEnd="32dp"/>
+        </LinearLayout>
+
     </LinearLayout>
 </ScrollView>
+
+    <!--
+         Name: Deborah Ama Paintsil
+         Student ID: s2110986
+     -->
