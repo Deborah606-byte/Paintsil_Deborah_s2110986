@@ -1,8 +1,3 @@
-//
-// Name                 Deborah Ama Paintsil
-// Student ID           s2110986
-// Programme of Study   BSc (Hons) Computing
-//
 package com.example.paintsil_deborah_s2110986;
 
 import android.app.AlarmManager;
@@ -33,7 +28,7 @@ import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.Calendar;
 
-public class MainActivity extends AppCompatActivity implements HomeFragment.OnButtonClickListener{
+public class MainActivity extends AppCompatActivity implements HomeFragment.OnButtonClickListener {
 
     Toolbar toolbar;
     BottomNavigationView bottomNavigationView;
@@ -57,11 +52,14 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnBu
         Intent intent = new Intent(this, UpdateWeatherService.class);
         startService(intent);
 
+        // Send broadcast to trigger the toast message at app startup
+        Intent updateWeatherIntent = new Intent("com.example.paintsil_deborah_s2110986.UPDATE_WEATHER_TRIGGERED");
+        LocalBroadcastManager.getInstance(this).sendBroadcast(updateWeatherIntent);
+
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // Set the initial title before setting the fragment
-        getSupportActionBar().setTitle("Weather");
+        getSupportActionBar().setTitle("Forecastify");
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -83,16 +81,16 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnBu
                     title = "About Us";
                 }
 
-                // Set the selected fragment
                 getSupportFragmentManager().beginTransaction().replace(R.id.container, selectedFragment).commit();
-
-                // Set the toolbar title
                 getSupportActionBar().setTitle(title);
 
                 return true;
             }
         });
         scheduleDataUpdates();
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(mUpdateWeatherReceiver,
+                new IntentFilter("com.example.paintsil_deborah_s2110986.UPDATE_WEATHER_TRIGGERED"));
     }
 
     @Override
@@ -103,7 +101,6 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnBu
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        // Handle menu item clicks
         if (item.getItemId() == R.id.search) {
             getSupportFragmentManager().beginTransaction().replace(R.id.container, searchFragment).addToBackStack(null).commit();
             getSupportActionBar().setTitle("Search");
@@ -121,18 +118,12 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnBu
         }
     }
 
-
     @Override
     public void onButtonClick() {
-        // Get the FragmentManager
         FragmentManager fragmentManager = getSupportFragmentManager();
-        // Begin the transaction
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        // Replace the current fragment with the DaysFragment
         transaction.replace(R.id.container, new DaysFragment());
-        // Add the transaction to the back stack
         transaction.addToBackStack(null);
-        // Commit the transaction
         transaction.commit();
     }
 
@@ -167,32 +158,29 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnBu
                 AlarmManager.INTERVAL_DAY, pendingIntent);
     }
 
+    private BroadcastReceiver mUpdateWeatherReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Toast.makeText(context, "Weather data is being updated", Toast.LENGTH_SHORT).show();
+        }
+    };
+
     @Override
     protected void onResume() {
         super.onResume();
-        LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver, new IntentFilter("com.example.paintsil_deborah_s2110986.UPDATE_WEATHER"));
+        LocalBroadcastManager.getInstance(this).registerReceiver(mUpdateWeatherReceiver,
+                new IntentFilter("com.example.paintsil_deborah_s2110986.UPDATE_WEATHER_TRIGGERED"));
     }
 
     @Override
     protected void onPause() {
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mUpdateWeatherReceiver);
         super.onPause();
     }
 
-    private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            boolean isUpdateSuccessful = intent.getBooleanExtra("isUpdateSuccessful", false);
-            if (isUpdateSuccessful) {
-                // Update the UI with the latest weather data
-                Toast.makeText(context, "Weather data updated successfully", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(context, "Failed to update weather data", Toast.LENGTH_SHORT).show();
-            }
-        }
-    };
-
-
-
-
+    @Override
+    protected void onDestroy() {
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mUpdateWeatherReceiver);
+        super.onDestroy();
+    }
 }

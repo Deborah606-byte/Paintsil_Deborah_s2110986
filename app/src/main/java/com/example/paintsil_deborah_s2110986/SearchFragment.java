@@ -5,9 +5,13 @@
 //
 package com.example.paintsil_deborah_s2110986;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -88,8 +92,15 @@ public class SearchFragment extends Fragment implements WeatherAdapter.OnItemCli
         };
 
         for (String url : urls) {
-            fetchAndParseWeatherData(url);
+            if (isNetworkAvailable()) {
+                fetchAndParseWeatherData(url);
+            } else {
+                // Display a message to the user about no internet connectivity
+                Log.d("NetworkStatus", "No internet connectivity. Displaying toast message.");
+                Toast.makeText(getContext(), "No internet connectivity. Please try again later.", Toast.LENGTH_SHORT).show();
+            }
         }
+
 
         return view;
     }
@@ -134,6 +145,15 @@ public class SearchFragment extends Fragment implements WeatherAdapter.OnItemCli
             }
         }).start();
     }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        boolean isConnected = activeNetworkInfo != null && activeNetworkInfo.isConnected();
+        Log.d("NetworkStatus", "isNetworkAvailable: " + isConnected);
+        return isConnected;
+    }
+
 
     private void filterWeatherItems(String query) {
         filteredWeatherItems.clear();

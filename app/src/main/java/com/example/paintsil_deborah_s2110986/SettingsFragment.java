@@ -1,8 +1,3 @@
-//
-// Name                 Deborah Ama Paintsil
-// Student ID           s2110986
-// Programme of Study   BSc (Hons) Computing
-//
 package com.example.paintsil_deborah_s2110986;
 
 import android.annotation.SuppressLint;
@@ -15,6 +10,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,10 +23,25 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import java.util.Calendar;
 
-
 public class SettingsFragment extends Fragment {
     private TimePicker updateTime1Picker;
     private TimePicker updateTime2Picker;
+
+    private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // No need to display toast message here
+            // This receiver is only responsible for handling broadcast about saving settings
+            boolean isUpdateSuccessful = intent.getBooleanExtra("isUpdateSuccessful", false);
+            if (isUpdateSuccessful) {
+                // Log successful update
+                Log.d("SettingsFragment", "Weather data update settings saved successfully");
+            } else {
+                // Log failed update
+                Log.d("SettingsFragment", "Failed to save weather data update settings");
+            }
+        }
+    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,7 +67,6 @@ public class SettingsFragment extends Fragment {
         updateTime1Picker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             @Override
             public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
-                // Save the selected time
                 saveUpdateTime(hourOfDay, minute, "updateTime1");
             }
         });
@@ -64,7 +74,6 @@ public class SettingsFragment extends Fragment {
         updateTime2Picker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             @Override
             public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
-                // Save the selected time
                 saveUpdateTime(hourOfDay, minute, "updateTime2");
             }
         });
@@ -83,12 +92,16 @@ public class SettingsFragment extends Fragment {
                 int minute2 = updateTime2Picker.getMinute();
                 saveUpdateTime(hour2, minute2, "updateTime2");
 
+                // Display toast message for scheduled update times
+                String toastMessage = "Weather will be updated at " + hour1 + ":" + minute1 + " and " + hour2 + ":" + minute2;
+                Toast.makeText(getActivity(), toastMessage, Toast.LENGTH_SHORT).show();
+
                 // Start the UpdateWeatherService to update the weather data
                 Intent intent = new Intent(getActivity(), UpdateWeatherService.class);
                 getActivity().startService(intent);
-
             }
         });
+
 
         return view;
     }
@@ -102,32 +115,36 @@ public class SettingsFragment extends Fragment {
 
         // Schedule the alarm
         scheduleWeatherUpdateAlarm(hour, minute, key);
+
+        // Debug log to track when update times are saved
+        Log.d("SettingsFragment", "Update time saved: " + key + " - " + hour + ":" + minute);
     }
 
     @SuppressLint("ScheduleExactAlarm")
     private void scheduleWeatherUpdateAlarm(int hour, int minute, String key) {
         AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(getActivity(), WeatherUpdateAlarmReceiver.class);
+        Intent intent = new Intent(getActivity(), DataUpdateReceiver.class);
 
-        // For Android Nougat (API level 24) and below, do not use FLAG_IMMUTABLE or FLAG_MUTABLE
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        // Use a unique request code for each alarm
+        int requestCode = (key.equals("updateTime1") ? 1 : 2);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity(), requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        // Calculate the time for the alarm
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, hour);
         calendar.set(Calendar.MINUTE, minute);
         calendar.set(Calendar.SECOND, 0);
 
-        // Schedule the alarm
         if (calendar.before(Calendar.getInstance())) {
-            // If the chosen time is in the past, schedule for the next day
             calendar.add(Calendar.DAY_OF_YEAR, 1);
         }
 
-        // Set the alarm
-        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+        // Use setExactAndAllowWhileIdle for API level 23 and above
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+        } else {
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+        }
     }
-
 
     @Override
     public void onResume() {
@@ -140,31 +157,6 @@ public class SettingsFragment extends Fragment {
         LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(mMessageReceiver);
         super.onPause();
     }
-
-    private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            boolean isUpdateSuccessful = intent.getBooleanExtra("isUpdateSuccessful", false);
-            if (isUpdateSuccessful) {
-                Toast.makeText(context, "Weather data update settings saved successfully", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(context, "Failed to save weather data update settings", Toast.LENGTH_SHORT).show();
-            }
-        }
-    };
-
-    public class WeatherUpdateAlarmReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            // Display toast message
-            Toast.makeText(context, "Weather data is being updated...", Toast.LENGTH_SHORT).show();
-
-            // Start the UpdateWeatherService to update the weather data
-            Intent updateIntent = new Intent(context, UpdateWeatherService.class);
-            context.startService(updateIntent);
-        }
-    }
-
 
 
 }
